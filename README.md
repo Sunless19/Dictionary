@@ -1,4 +1,4 @@
-# Dictionary Application - Entertainment Module
+# Dictionary Application Documentation
 ## Introduction
 ### This project is part of a dictionary application developed using C# and WPF (.NET Framework). The application consists of three modules: Administrative, Word Search, and Entertainment.
 
