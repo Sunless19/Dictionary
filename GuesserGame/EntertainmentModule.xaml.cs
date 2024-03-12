@@ -28,6 +28,10 @@ namespace GuesserGame
             LoadWords(); // load words from xml
             ShowRandomWord();
         }
+        private void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            nextClick();
+        }
 
         private void ShowWord()
         {
@@ -103,8 +107,7 @@ namespace GuesserGame
                 }
             }
         }
-
-        private void NextButton_Click(object sender, RoutedEventArgs e)
+        void nextClick()
         {
             if (wordsList != null && wordsList.Count > 0)
             {
@@ -138,7 +141,7 @@ namespace GuesserGame
 
                 if (buttonClicks == 5)
                 {
-                    MessageBox.Show($"Ai ghicit {correctGuesses} cuvinte din cele 5."); 
+                    MessageBox.Show($"Ai ghicit {correctGuesses} cuvinte din cele 5.");
                     EntertainmentModule entertainmentModule = new EntertainmentModule();
                     entertainmentModule.Show();
                     this.Close();

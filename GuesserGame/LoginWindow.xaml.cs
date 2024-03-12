@@ -39,8 +39,20 @@ namespace GuesserGame
             AddWordWindow addWordWindow = new AddWordWindow();
             addWordWindow.ShowDialog();
         }
-
         private void DeleteWordButton_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteClick();
+        }
+        private void ModifyWordButton_Click(object sender, RoutedEventArgs e)
+        {
+            ModifyClick();
+        }
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoginClick();
+        }
+
+        void DeleteClick()
         {
             DeleteWordDialog deleteWordDialog = new DeleteWordDialog();
             if (deleteWordDialog.ShowDialog() == true)
@@ -82,8 +94,7 @@ namespace GuesserGame
                 }
             }
         }
-
-        private void ModifyWordButton_Click(object sender, RoutedEventArgs e)
+        void ModifyClick()
         {
             ModifyWordDialog modifyDialog = new ModifyWordDialog();
             if (modifyDialog.ShowDialog() == true)
@@ -129,8 +140,7 @@ namespace GuesserGame
                 MessageBox.Show("Cuvântul a fost modificat cu succes!");
             }
         }
-
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        void LoginClick()
         {
             string username = usernameTextBox.Text;
             string password = passwordBox.Password;
@@ -163,17 +173,18 @@ namespace GuesserGame
                 addWord.Visibility = Visibility.Visible;
                 modifyWord.Visibility = Visibility.Visible;
                 deleteWord.Visibility = Visibility.Visible;
-                Password.Visibility= Visibility.Collapsed;
-                
-                Username.Visibility= Visibility.Collapsed;
-                usernameTextBox.Visibility= Visibility.Collapsed;
-                passwordBox.Visibility= Visibility.Collapsed;
-                Login.Visibility= Visibility.Collapsed;
+                Password.Visibility = Visibility.Collapsed;
+
+                Username.Visibility = Visibility.Collapsed;
+                usernameTextBox.Visibility = Visibility.Collapsed;
+                passwordBox.Visibility = Visibility.Collapsed;
+                Login.Visibility = Visibility.Collapsed;
             }
             else
             {
                 MessageBox.Show("Nume de utilizator sau parola incorecta!");
             }
         }
+
     }
 }

@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
 
         <Label Content="Word to Modify:" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <TextBox x:Name="wordToModifyTextBox" Grid.Row="0" Margin="120,0,0,0" Width="200" VerticalAlignment="Center"/>
+        <ComboBox x:Name="wordToModifyTextBox" Grid.Row="0" Margin="120,0,0,0" Width="200" VerticalAlignment="Center" IsEditable="True"/>
 
         <Label Content="New Category:" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <ComboBox x:Name="newCategoryComboBox" Grid.Row="1" Margin="120,0,0,0" Width="200" VerticalAlignment="Center" IsEditable="True"/>

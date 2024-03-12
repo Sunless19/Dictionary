@@ -14,94 +14,28 @@ namespace GuesserGame
         {
             InitializeComponent();
         }
-        private void DisplaySingleWordDetails(Word word)
-        {
-            // details for a single word.
-            singleResultDetails.Visibility = Visibility.Visible;
-            singleResultTextBlock.Text = $"Word: {word.WordText}\nCategory: {word.Category}\nDescription: {word.Description}";
-
-            if (!string.IsNullOrEmpty(word.ImagePath))
-            {
-                searchResultsListBox.Visibility = Visibility.Collapsed;
-                // Absolute path to image
-                string imagePath = Path.Combine(Environment.CurrentDirectory, word.ImagePath);
-
-                // Verify file path exists.
-                if (File.Exists(imagePath))
-                {
-                    try
-                    {
-                        // BitMapImage
-                        BitmapImage bitmap = new BitmapImage();
-                        bitmap.BeginInit();
-                        bitmap.UriSource = new Uri(imagePath);
-                        bitmap.EndInit();
-
-                        // new image + setting source.
-                        Image image = new Image();
-                        image.Source = bitmap;
-
-                        // add image to unique panel
-                        singleResultDetails.Children.Add(image);
-                    }
-                    catch (Exception ex)
-                    {
-                        // Throw error if loading image
-                        MessageBox.Show($"Error loading image: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                }
-                else
-                {
-                    // Throw error if file doesn't exist
-                    MessageBox.Show("Image file not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-        }
+        
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            string searchText = searchTextBox.Text;
-            string selectedCategory = categoryComboBox.SelectedItem as string;
-
-            List<Word> searchResults = SearchWords(searchText, selectedCategory);
-
-            // Clear existing results
-            searchResultsListBox.Items.Clear();
-
-            if (searchResults.Count == 1)
-            {
-                DisplaySingleWordDetails(searchResults[0]);
-            }
-            else
-            {
-                // Dacă există mai mult de un rezultat, afișează în ListBox
-                foreach (Word result in searchResults)
-                {
-                    searchResultsListBox.Items.Add(result);
-                }
-            }
+            search();
         }
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string searchText = searchTextBox.Text;
+            searchTextBoxCH();
+        }
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Close current open window.
+            this.Close();
 
-            if (string.IsNullOrWhiteSpace(searchText))
-            {
-                searchResultsListBox.Items.Clear();
-                return;
-            }
-
-            string selectedCategory = categoryComboBox.SelectedItem as string;
-
-            List<Word> searchResults = SearchWords(searchText, selectedCategory);
-
-            // Clear existing results
-            searchResultsListBox.Items.Clear();
-
-            // Add search results to ListBox
-            foreach (Word result in searchResults)
-            {
-                searchResultsListBox.Items.Add(result);
-            }
+            // Open same window.
+            SearchWindow newWindow = new SearchWindow();
+            newWindow.Show();
+        }
+        private void SearchWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Call the method to populate the ComboBox with categories
+            PopulateCategoryComboBox();
         }
         private List<Word> SearchWords(string searchText, string selectedCategory)
         {
@@ -152,20 +86,94 @@ namespace GuesserGame
                 }
             }
         }
-        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        void search()
         {
-            // Close current open window.
-            this.Close();
+            string searchText = searchTextBox.Text;
+            string selectedCategory = categoryComboBox.SelectedItem as string;
 
-            // Open same window.
-            SearchWindow newWindow = new SearchWindow();
-            newWindow.Show();
+            List<Word> searchResults = SearchWords(searchText, selectedCategory);
+
+            // Clear existing results
+            searchResultsListBox.Items.Clear();
+
+            if (searchResults.Count == 1)
+            {
+                DisplaySingleWordDetails(searchResults[0]);
+            }
+            else
+            {
+                // Dacă există mai mult de un rezultat, afișează în ListBox
+                foreach (Word result in searchResults)
+                {
+                    searchResultsListBox.Items.Add(result);
+                }
+            }
         }
-
-        private void SearchWindow_Loaded(object sender, RoutedEventArgs e)
+        void searchTextBoxCH()
         {
-            // Call the method to populate the ComboBox with categories
-            PopulateCategoryComboBox();
+            string searchText = searchTextBox.Text;
+
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                searchResultsListBox.Items.Clear();
+                return;
+            }
+
+            string selectedCategory = categoryComboBox.SelectedItem as string;
+
+            List<Word> searchResults = SearchWords(searchText, selectedCategory);
+
+            // Clear existing results
+            searchResultsListBox.Items.Clear();
+
+            // Add search results to ListBox
+            foreach (Word result in searchResults)
+            {
+                searchResultsListBox.Items.Add(result);
+            }
+        }
+        private void DisplaySingleWordDetails(Word word)
+        {
+            // details for a single word.
+            singleResultDetails.Visibility = Visibility.Visible;
+            singleResultTextBlock.Text = $"Word: {word.WordText}\nCategory: {word.Category}\nDescription: {word.Description}";
+
+            if (!string.IsNullOrEmpty(word.ImagePath))
+            {
+                searchResultsListBox.Visibility = Visibility.Collapsed;
+                // Absolute path to image
+                string imagePath = Path.Combine(Environment.CurrentDirectory, word.ImagePath);
+
+                // Verify file path exists.
+                if (File.Exists(imagePath))
+                {
+                    try
+                    {
+                        // BitMapImage
+                        BitmapImage bitmap = new BitmapImage();
+                        bitmap.BeginInit();
+                        bitmap.UriSource = new Uri(imagePath);
+                        bitmap.EndInit();
+
+                        // new image + setting source.
+                        Image image = new Image();
+                        image.Source = bitmap;
+
+                        // add image to unique panel
+                        singleResultDetails.Children.Add(image);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Throw error if loading image
+                        MessageBox.Show($"Error loading image: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    // Throw error if file doesn't exist
+                    MessageBox.Show("Image file not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
     }
 }

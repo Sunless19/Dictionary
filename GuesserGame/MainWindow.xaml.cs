@@ -32,7 +32,6 @@ namespace GuesserGame
             SearchWindow searchWindow = new SearchWindow();
             searchWindow.ShowDialog();
         }
-
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             EntertainmentModule entertainmentModule = new EntertainmentModule();

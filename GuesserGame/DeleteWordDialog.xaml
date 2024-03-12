@@ -10,7 +10,7 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Label Content="Introduceți cuvântul de șters:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
-        <TextBox x:Name="wordToDeleteTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="10,30,0,0"/>
+        <ComboBox x:Name="wordToDeleteComboBox" HorizontalAlignment="Left" IsEditable="True" VerticalAlignment="Top" Width="200" Margin="10,30,0,0"/>
         <Button Content="Șterge" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,70,0,0" Click="DeleteButton_Click"/>
         <Button Content="Anulează" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="135,70,0,0" Click="CancelButton_Click"/>
     </Grid>

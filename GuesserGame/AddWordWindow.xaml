@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
 
         <Label Content="Category:" Grid.Row="0" HorizontalAlignment="Center" Width="294" VerticalAlignment="Top" Height="26" HorizontalContentAlignment="Center"/>
-        <ComboBox x:Name="categoryComboBox" Margin="264,25,264,69" VerticalAlignment="Top" IsEditable="True" Text="Select or type category..."/>
+        <ComboBox x:Name="categoryComboBox" Margin="264,25,264,69" VerticalAlignment="Top" IsEditable="True" Text="Select or type category..." SelectionChanged="categoryComboBox_SelectionChanged"/>
 
         <Label Content="Word:" Margin="0,50,0,45" HorizontalAlignment="Center" Width="42"/>
         <TextBox x:Name="wordTextBox" HorizontalAlignment="Center" Width="260" VerticalAlignment="Top" Height="24" Margin="0,74,0,0"/>

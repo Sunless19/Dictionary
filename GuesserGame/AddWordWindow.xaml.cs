@@ -12,6 +12,29 @@ namespace GuesserGame
         public AddWordWindow()
         {
             InitializeComponent();
+            addWordsToComboBox();
+        }
+        private void SelectImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            imageClick();
+        }
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            addWord();
+        }
+
+        private void imagePathTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
+        }
+
+        private void categoryComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
+
+        void addWordsToComboBox()
+        {
             List<string> existingCategories = GetExistingCategories();
             foreach (string category in existingCategories)
             {
@@ -41,7 +64,8 @@ namespace GuesserGame
 
             return existingCategories;
         }
-        private void SelectImageButton_Click(object sender, RoutedEventArgs e)
+
+        void imageClick()
         {
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
             openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
@@ -80,7 +104,7 @@ namespace GuesserGame
                 }
             }
         }
-        private void AddButton_Click(object sender, RoutedEventArgs e)
+        void addWord()
         {
             // category empty
             if (string.IsNullOrEmpty(categoryComboBox.Text))
@@ -146,11 +170,8 @@ namespace GuesserGame
 
             MessageBox.Show("Cuvântul a fost adăugat cu succes!");
         }
-
-        private void imagePathTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-
-        }
+        
+        
     }
 
     public class Word
